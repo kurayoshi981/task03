@@ -1,0 +1,19 @@
+  <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;" fixed-top>
+
+   <a class="navbar-brand" ><%= link_to "Task Quest", root_path, class: "nav-link" %></a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="ナビゲーションの切替">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-link"><%= current_user.name %>さん</li>
+        <li><%= link_to "リストを作成", "list/new", class: "nav-link listNew" %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, class: "nav-link", method: :delete %></li>
+      </ul>
+      <li class="navbar-text">
+        インライン要素を含むテキスト
+      </li>
+    </div>
+  </nav>
+</header>
+
