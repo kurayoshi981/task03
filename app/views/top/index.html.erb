@@ -2,21 +2,19 @@
   <div class="row">
     <% @lists.each do |list| %>
     <div class="col-sm-4">
-      <div class="card  bg-info mb-3" style="max-width: 18rem;">
+      <div class="card  bg-light" mb-3" style="max-width: 18rem;">
         <div class="card-header ">
           <h4><%= list.title %></h4>
-              <p><%= link_to content_tag(:i, '', class: 'fas fa-trash'), list, method: :delete, data: { confirm: "#{list.title}を削除して大丈夫ですか?" } %></p>
+              <div><%= link_to content_tag(:i, '', class: 'fas fa-trash'), list, method: :delete, data: { confirm: "#{list.title}を削除して大丈夫ですか?" } %></div>
         </div>
-        <div class="card card-body bg-light p-2">
+        <div class="card card-body bg-info p-2">
 
         <% list.cards.each do |card| %>
             <%= link_to list_card_path(list, card), class:"cardDetail_link" do %>
-            <!-- ================================ -->
-          <div class="card" bg-info mb-3" style="max-width: 18rem;>
+          <div class="card" bg-primary mb-3" style="max-width: 18rem;>
             <h3 class="card_title"><%= card.title %></h3>
-              <% if card.memo.size > 0 %>
+
                 <div class="card_detail is-exist"><i class="fas fa-bars"></i></div>
-              <% end %>
           </div>
           <% end %>
         <% end %>

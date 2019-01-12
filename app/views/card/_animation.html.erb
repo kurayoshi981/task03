@@ -1,0 +1,66 @@
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+const progressBar = function(id){
+      const frame = $(id);
+      const bar = $('div.progress-bar', frame);
+      let current = 0;
+      return {
+        current: function(){
+          return current;
+        },
+        set: function(n) {
+          current = (n > 100) ? 100 : n;
+          bar
+            .css('width', current + '%')
+            .prop('aria-valuenow', current)
+            .text(current + '%');
+          return this;
+        },
+        show: function() {
+          this.set(0);
+          frame.addClass('show');
+          bar.addClass('progress-bar-striped progress-bar-animated');
+          return this;
+        },
+        complete: function(){
+          bar.removeClass('progress-bar-striped progress-bar-animated');
+          return this;
+        }
+      };
+    };
+</script>
+
+<script>
+ (function($){
+      const progress = new progressBar('#progress');
+      const btn = $('#btn');
+
+      btn.on('click', function(){
+        progress.show();
+        btn.prop("disabled", true);
+
+        // 進行状況チェック (チェック間隔は任意...)
+        const timer = setInterval(function() {
+          const current = progress.current();
+          if (current < 100) {
+            // バーを進める ※サンプル：0〜10の乱数を加算する
+            const n = Math.floor( Math.random() * 11 );
+            progress.set(current + n);
+          } else {
+            // 100%になれば、チェック(繰り返し)を終了する
+            progress.complete();
+            clearInterval(timer);
+
+            btn
+              .text('終了')
+              .addClass('btn-outline-success')
+              .removeClass('btn-outline-primary');
+          }
+        }, 200);
+      });
+    })(jQuery);
+</script>

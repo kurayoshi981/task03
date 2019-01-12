@@ -13,6 +13,10 @@
         <div>リスト名</div>
         <div><%= @card.list.title %></div>
       </div>
+      <div class="cardContents_listStatus">
+        <div>リスト名</div>
+        <div><%= @card.list.id %></div>
+      </div>
       <div class="cardContents_btnArea">
         <%= link_to '編集する', edit_list_card_path(@card.list, @card), class: "edit_btn" %>
         <%= link_to '削除をする', list_card_path(@card.list, @card), class: "text-danger delete_btn", method: :delete, data: { confirm: "このカードを削除して大丈夫ですか?" } %>
@@ -20,3 +24,48 @@
     </div>
   </div>
 </div>
+ <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="progress mt-3 fade" id="progress">
+          <div class="progress-bar" role="progressbar"
+               style="width: 0;" data-valuenow="0" data-valuemin="0" data-valuemax="100">
+            0%
+          </div>
+        </div>
+        <div class="mt-3 text-center">
+          <button type="button" class="btn btn-outline-primary" id="btn">実行</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div id="progress-box">
+   <div id="progress-bar">
+   </div>
+</div>
+<script>
+  var progress = 0;
+var imgCount = $('img').length;
+$("img").each(function(){
+   var src = $(this).attr('src');
+   $("<img>").attr('src',src).on('load',function(){
+     progress++;
+   });
+});
+setInterval(function(){
+   $("#progress-bar").css({
+     'width': (progress / imgCount) * 100 + '%'
+   });
+}, 1);
+</script>
+
+
+  <div class="progress">
+    <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" style="width: 0%;"></div>
+</div>
+
+   <%= render partial: "card/animation" %>
+
