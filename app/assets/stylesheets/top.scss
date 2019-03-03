@@ -1,8 +1,15 @@
+* {
+  text-decoration: none;
+}
+
 .row {
   margin-top: 20px;
 }
+.cardDetail_link {
+  text-decoration: none;
+  color: black;
+}
 
-        .cardDetail_link {
-          text-decoration: none;
-          color: black;
-        }
+.card_title {
+font-size: 20px;
+}

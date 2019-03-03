@@ -13,6 +13,10 @@
         <div>リスト名</div>
         <div><%= @card.list.title %></div>
       </div>
+      <div class="cardContents_listStatus">
+        <div>レベル</div>
+        <div><%= @card.category.all %></div>
+      </div>
       <div class="cardContents_btnArea">
         <%= link_to '編集する', edit_list_card_path(@card.list, @card), class: "edit_btn" %>
         <%= link_to '削除をする', list_card_path(@card.list, @card), class: "text-danger delete_btn", method: :delete, data: { confirm: "このカードを削除して大丈夫ですか?" } %>
@@ -36,8 +40,7 @@
     </div>
   </div>
 
-
-
+<!-- 以下プログレスバーのコード -->
 <div id="progress-box">
    <div id="progress-bar">
    </div>
@@ -58,10 +61,6 @@ setInterval(function(){
 }, 1);
 </script>
 
-
-  <div class="progress">
-    <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" style="width: 0%;"></div>
-</div>
 
    <%= render partial: "card/animation" %>
 

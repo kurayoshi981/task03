@@ -13,7 +13,9 @@
         <%= f.label :memo %>
         <%= f.text_area :memo, autofocus: true, class: "form-control", placeholder: "詳細" %>
       <div class="cardeditForm_memo">
-
+        <label>レベル</label>
+        <%= select :card, :category_id, @category.map{ |l| [l.name, l.id] }, {}, { class: 'form-control' } %>
+      </div>
       <div class="text-center"><%= f.submit "作成する", class: "submitBtn" %></div>
       </div>
     <% end %>
